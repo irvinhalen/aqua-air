@@ -3,7 +3,6 @@ import bgvid from '../media/bg-vid.mp4';
 import elbow from '../media/macaroni-elbow.png';
 import fusilli from '../media/macaroni-fusilli.png';
 import ScrollRevealElement from '../ScrollRevealElement';
-//import axios from 'axios';
 
 function Home(){
     const [hyphenCount, setHyphenCount] = useState(0);

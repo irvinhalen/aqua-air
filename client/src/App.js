@@ -89,11 +89,14 @@ function App() {
     <div id="top-content" className={`App`}>
       <Router>
       <header>
-        <nav id="navbar-aqua" className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'navbar-scrolled' : 'navbar-scroll'} ${loaded ? '' : 'loader--hidden'}`}>
-          <Link to='/'><div className="navbar-brand"><img src={scrolled ? banner_logo : banner_logo_white} alt="Aqua-Air" height="50rem" /></div></Link>
-          <div className="container-fluid">
-            <div className="collapse navbar-collapse" id="navbarExample01">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div className='container-fluid navContainer'>
+          <nav id="navbar-aqua" className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'navbar-scrolled' : 'navbar-scroll'} ${loaded ? '' : 'loader--hidden'}`}>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <Link to='/'><div className="navbar-brand"><img src={scrolled ? banner_logo : banner_logo_white} alt="Aqua-Air" height="50rem" /></div></Link>
+            <div className="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
+              <ul className="navbar-nav">
                 <li className="nav-item">
                 <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/people/Stuffed-Slice/61551555076645/" target="blank">Stuffed Slice</a>
                 </li>
@@ -109,13 +112,13 @@ function App() {
                 <li className="nav-item">
                   <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.instagram.com/stuffed_slice/" target="blank">Instagram</a>
                 </li>
-                <li className="navButton">
-                  <Link to='/crud'><button className='main-btn btn py-2 px-5'>LOG IN</button></Link>
-                </li>
               </ul>
-            </div>
           </div>
-        </nav>
+          <div className="navButton">
+            <Link to='/crud'><button className='main-btn btn py-2 px-5'>LOG IN</button></Link>
+          </div>
+          </nav>
+        </div>
       </header>
       <Routes>
         <Route path='/' element={<Home />} />
