@@ -8,6 +8,8 @@ function AAcrud(){
     const [nameMember, setNameMember] = useState("");
     const [usernameMember, setUsernameMember] = useState("");
     const [passwordMember, setPasswordMember] = useState("");
+    const [passwordMemberRe, setPasswordMemberRe] = useState('');
+    const [passwordMemberMatch, setPasswordMemberMatch] = useState(true);
     const [bioMember, setBioMember] = useState("");
 
     const [listOfMembers, setListOfMembers] =  useState([]);
@@ -18,6 +20,13 @@ function AAcrud(){
 
     const addMember = (e) => {
         e.preventDefault();
+
+        if (passwordMember !== passwordMemberRe) {
+            setPasswordMemberMatch(false);
+            return;
+        }
+
+        setPasswordMemberMatch(true);
 
         Axios.post('http://localhost:3001/create', {
           name: nameMember,
@@ -96,6 +105,11 @@ function AAcrud(){
                             </div>
                         </div>
                         <div className='card-body card-p-text'>
+                        {!passwordMemberMatch && (
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Passwords do not match!
+                            </div>
+                        )}
                             <div className="form-group row mb-2">
                                 <label htmlFor="crudName" className="col-sm-3 col-form-label d-flex justify-content-start">Name:</label>
                                 <div className="col-sm-9">
@@ -117,6 +131,12 @@ function AAcrud(){
                                 <label htmlFor="crudPassword" className="col-sm-3 col-form-label d-flex justify-content-start">Password:</label>
                                 <div className="col-sm-9">
                                     <input type="password" onChange={(event) => {setPasswordMember(event.target.value)}} className="form-control" id="crudPassword" name="crudPassword" placeholder="Password" required />
+                                </div>
+                            </div>
+                            <div className="form-group row mb-2">
+                                <label htmlFor="crudPasswordRe" className="col-sm-3 col-form-label d-flex justify-content-start">Re Password:</label>
+                                <div className="col-sm-9">
+                                    <input type="password" onChange={(event) => {setPasswordMemberRe(event.target.value)}} className="form-control" id="crudPasswordRe" name="crudPasswordRe" placeholder="Confirm Password" required />
                                 </div>
                             </div>
                             <div className="form-group row mb-2">
