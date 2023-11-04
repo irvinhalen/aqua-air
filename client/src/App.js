@@ -21,8 +21,6 @@ function App() {
         setLoaded(true);
       });
     }, 1500);
-
-    document.body.style.overflow = 'hidden';
     
     return () => {
       clearTimeout(timeout);
@@ -40,8 +38,6 @@ function App() {
     if (loader) {
       loader.parentNode.removeChild(loader);
     }
-
-    document.body.style.overflow = 'auto';
   };
 
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -107,13 +103,13 @@ function App() {
                 <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/people/Stuffed-Slice/61551555076645/" target="blank">Stuffed Slice</a>
                 </li>
                 <li className="nav-item">
+                  <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.instagram.com/stuffed_slice/" target="blank">Sandwich</a>
+                </li>
+                <li className="nav-item">
                   <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/cinthney/" target="blank">Bouquet</a>
                 </li>
                 <li className="nav-item">
                   <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/Irvin.what/" target="blank">Photographs Sold</a>
-                </li>
-                <li className="nav-item">
-                  <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.instagram.com/stuffed_slice/" target="blank">Instagram</a>
                 </li>
               </ul>
           </div>
