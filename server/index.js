@@ -22,19 +22,30 @@ app.post('/create', (req, res) => {
 
     const saltRounds = 10;
 
-    bcrypt.hash(plainPassword, saltRounds, (err, hashedPassword) => {
-        if(err){
-            console.log(err);
-            res.status(500).json({ error: 'Error hashing the password' });
+    db.query("SELECT * FROM members WHERE username = ?", [username], (selectErr, selectResult) => {
+        if (selectErr) {
+            console.log(selectErr);
+            res.status(500).json({ error: 'Error checking the database' });
         } else {
-            db.query("INSERT INTO members (name, username, password, bio) VALUES (?, ?, ?, ?)",  [name, username, hashedPassword, bio], (dbErr, result) => {
-                if(dbErr){
-                    console.log(dbErr);
-                    res.status(500).json({ error: 'Error inserting data into the database' });
-                } else {
-                    res.send("Values Inserted");
-                }
-            });
+            if (selectResult.length > 0) {
+                res.status(400).json({ error: 'Username is already taken' });
+            } else {
+                bcrypt.hash(plainPassword, saltRounds, (hashErr, hashedPassword) => {
+                    if (hashErr) {
+                        console.log(hashErr);
+                        res.status(500).json({ error: 'Error hashing the password' });
+                    } else {
+                        db.query("INSERT INTO members (name, username, password, bio) VALUES (?, ?, ?, ?)", [name, username, hashedPassword, bio], (insertErr, insertResult) => {
+                            if (insertErr) {
+                                console.log(insertErr);
+                                res.status(500).json({ error: 'Error inserting data into the database' });
+                            } else {
+                                res.send("Values Inserted");
+                            }
+                        });
+                    }
+                });
+            }
         }
     });
 });

@@ -121,6 +121,10 @@ body {
   padding-bottom: 15px!important;
 }
 
+.nav-no-underline{
+  text-decoration: none!important;
+}
+
 .navContainer{
   white-space: normal;
 }

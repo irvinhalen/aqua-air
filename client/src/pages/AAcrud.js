@@ -7,6 +7,7 @@ import ScrollRevealElement from '../ScrollRevealElement';
 function AAcrud(){
     const [nameMember, setNameMember] = useState("");
     const [usernameMember, setUsernameMember] = useState("");
+    const [usernameUniqueMember, setUsernameUniqueMember] = useState(true);
     const [passwordMember, setPasswordMember] = useState("");
     const [passwordMemberRe, setPasswordMemberRe] = useState('');
     const [passwordMemberMatch, setPasswordMemberMatch] = useState(true);
@@ -29,25 +30,28 @@ function AAcrud(){
         setPasswordMemberMatch(true);
 
         Axios.post('http://localhost:3001/create', {
-          name: nameMember,
-          username: usernameMember,
-          password: passwordMember,
-          bio: bioMember
-        }).then(() => {
-          setListOfMembers([...listOfMembers, {
             name: nameMember,
             username: usernameMember,
             password: passwordMember,
             bio: bioMember
-          }]);
+        }).then((response) => {
+            if (response.status === 200) {
+                setUsernameUniqueMember(true);
+                getMembers();
+            } else if (response.status === 400) {
+                setUsernameUniqueMember(false);
+            }
+        }).catch((error) => {
+            console.error("Axios Error:", error);
+            setUsernameUniqueMember(false);
         });
-    };
+    }
 
     const getMembers = () =>{
         Axios.get('http://localhost:3001/read').then((response) => {
           setListOfMembers(response.data);
         });
-      };
+    };
 
     const updateMemberBio = (id) => {
         if(!newBioMember){
@@ -65,7 +69,7 @@ function AAcrud(){
         }
     };
 
-    const deleteMember = (id) => {
+    const deleteMember = (id, usernameMember) => {
         Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
             setListOfMembers(listOfMembers.filter((val) => {
             return val.id !== id;
@@ -105,8 +109,13 @@ function AAcrud(){
                             </div>
                         </div>
                         <div className='card-body card-p-text'>
+                        {!usernameUniqueMember && (
+                            <div class="alert alert-danger" role="alert">
+                                Username is already taken!
+                            </div>
+                        )}
                         {!passwordMemberMatch && (
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 Passwords do not match!
                             </div>
                         )}

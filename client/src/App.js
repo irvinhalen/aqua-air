@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
+import Login from './pages/Login';
 import AAcrud from './pages/AAcrud';
 import React, { useState, useEffect } from 'react';
 
@@ -97,6 +98,11 @@ function App() {
             <Link to='/'><div className="navbar-brand"><img src={scrolled ? banner_logo : banner_logo_white} alt="Aqua-Air" height="50rem" /></div></Link>
             <div className="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
               <ul className="navbar-nav">
+                <Link to ='/crud' className='nav-no-underline' >
+                  <li className="nav-item">
+                    <div className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`}>CRUD</div>
+                  </li>
+                </Link>
                 <li className="nav-item">
                 <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/people/Stuffed-Slice/61551555076645/" target="blank">Stuffed Slice</a>
                 </li>
@@ -107,21 +113,19 @@ function App() {
                   <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/Irvin.what/" target="blank">Photographs Sold</a>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.facebook.com/people/Stuffed-Slice/61551555076645/" target="blank">Facebook</a>
-                </li>
-                <li className="nav-item">
                   <a className={`nav-link ${scrolled? 'hover-underline-animation-scrolled' : 'hover-underline-animation'}`} href="https://www.instagram.com/stuffed_slice/" target="blank">Instagram</a>
                 </li>
               </ul>
           </div>
           <div className="navButton">
-            <Link to='/crud'><button className='main-btn btn py-2 px-5'>LOG IN</button></Link>
+            <Link to='/login'><button className='main-btn btn py-2 px-5'>LOG IN</button></Link>
           </div>
           </nav>
         </div>
       </header>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/crud' element={<AAcrud />} />
       </Routes>
       </Router>

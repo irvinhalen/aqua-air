@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import bgvid from '../media/bg-vid.mp4';
 import elbow from '../media/macaroni-elbow.png';
 import fusilli from '../media/macaroni-fusilli.png';
@@ -28,11 +29,11 @@ function Home(){
                 <source src={bgvid} type="video/mp4"/>
                 </video>
                 <div className="container container-content">
-                <div className="content-in-vid">
-                    <h1>Offshore Strategies</h1>
-                    <p>I was thinking of calling it Off-brand Tactics for this practice project.<br />Now is the time to  take advantage, Philippines!</p>
-                    <a href="https://www.facebook.com/people/Stuffed-Slice/61551555076645/"><button className="snd-btn btn py-3 px-5">CONTACT US</button></a>
-                </div>
+                    <div className="content-in-vid">
+                        <h1>Offshore Strategies</h1>
+                        <p>I was thinking of calling it Off-brand Tactics for this practice project.<br />Now is the time to  take advantage, Philippines!</p>
+                        <Link to='/crud'><button className="snd-btn btn py-3 px-5">Let's CRUD</button></Link>
+                    </div>
                 </div>
             </div>
             <div className="additional-content container">
