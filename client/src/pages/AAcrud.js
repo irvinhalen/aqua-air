@@ -29,7 +29,7 @@ function AAcrud(){
 
         setPasswordMemberMatch(true);
 
-        Axios.post('http://localhost:3001/create', {
+        Axios.post('http://localhost:9001/create', {
             name: nameMember,
             username: usernameMember,
             password: passwordMember,
@@ -48,7 +48,7 @@ function AAcrud(){
     }
 
     const getMembers = () =>{
-        Axios.get('http://localhost:3001/read').then((response) => {
+        Axios.get('http://localhost:9001/read').then((response) => {
           setListOfMembers(response.data);
         });
     };
@@ -61,7 +61,7 @@ function AAcrud(){
             setErrorBioUpdate(false);
             setErrorBioUpdateMsg("");
 
-            Axios.put('http://localhost:3001/update', {bio: newBioMember, id: id}).then((response) => {
+            Axios.put('http://localhost:9001/update', {bio: newBioMember, id: id}).then((response) => {
                 setListOfMembers(listOfMembers.map((val)  => {
                 return val.id === id ? {id: val.id, name: val.name, username: val.username, password: val.password, bio: newBioMember} : val
                 }));
@@ -70,7 +70,7 @@ function AAcrud(){
     };
 
     const deleteMember = (id, usernameMember) => {
-        Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+        Axios.delete(`http://localhost:9001/delete/${id}`).then((response) => {
             setListOfMembers(listOfMembers.filter((val) => {
             return val.id !== id;
             }));

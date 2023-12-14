@@ -9,8 +9,8 @@ app.use(express.json());
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "larawan",
-    password: "Forever116@@",
+    user: "root",
+    password: "",
     database: "aqua_air"
 });
 
@@ -83,6 +83,6 @@ app.delete('/delete/:id', (req, res) => {
     })
 });
 
-app.listen(3001, () => {
-    console.log("Yay! You're server is running on port 3001");
+app.listen(9001, () => {
+    console.log("Yay! You're server is running on port 9001");
 });
