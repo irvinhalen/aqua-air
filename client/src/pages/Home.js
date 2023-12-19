@@ -54,7 +54,7 @@ function Home(){
             </div>
             <div className="add-on-content container">
             <ScrollRevealElement>
-                <h4>GROW THY BUSY-NESS</h4>
+                <h4>GROW THY BUSYNESS</h4>
             </ScrollRevealElement>
             <ScrollRevealElement>
                 <h2>Consider offshore utility now</h2>
