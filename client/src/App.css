@@ -200,8 +200,7 @@
 
 .App video{
   min-height: 100vh;
-  min-width: 100%;
-  width: 100vw;
+  max-width: 100%;
   right: 0;
   bottom: 0;
   filter: opacity(0.5);
